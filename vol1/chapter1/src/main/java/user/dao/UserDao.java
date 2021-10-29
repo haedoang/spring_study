@@ -9,17 +9,13 @@ import java.sql.*;
  * fileName : UserDao
  * author : haedoang
  * date : 2021/10/29
- * description : 사용자 정보를 DB에 넣고 관리할 DAO
+ * description : 상속을 통해 확장할 Users 도메인에 접근할 User 추상 클래스
  */
-public class UserDao {
-    private static final String MYSQL_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/tobi?useSSL=false";
-    private static final String DB_USER = "student";
-    private static final String DB_PASS = "student";
+public abstract class UserDao {
+    public abstract Connection getConnection() throws ClassNotFoundException, SQLException;
 
     public void add(User user) throws ClassNotFoundException, SQLException {
-        Class.forName(MYSQL_DRIVER);
-        Connection c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+        Connection c = getConnection();
 
         String query = new StringBuilder("insert into users(id, name, password) ")
                                     .append(" values (?,?,?)").toString();
@@ -37,8 +33,7 @@ public class UserDao {
 
 
     public User get(String id) throws ClassNotFoundException, SQLException {
-        Class.forName(MYSQL_DRIVER);
-        Connection c = DriverManager.getConnection(DB_URL,DB_USER,DB_PASS);
+        Connection c = getConnection();
 
         String query = new StringBuilder("select * from users where id = ?").toString();
         PreparedStatement ps = c.prepareStatement(query);
@@ -59,32 +54,18 @@ public class UserDao {
 
     }
 
-    public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        UserDao dao = new UserDao();
-
-        User user = new User();
-        user.setId("haedoang");
-        user.setName("김해동");
-        user.setPassword("notMarried");
-
-        dao.add(user);
-        System.out.println(user.getId() + " registered");
-
-        User user2 = dao.get(user.getId());
-        System.out.println(user2.getName());
-        System.out.println(user2.getPassword());
-
-        System.out.println(user2.getId() + " search succeed");
-
+    protected void hookMethod() {
+        System.out.println("훅 메소드는 선택적으로 오버라이드가능하다.");
     }
 
-    /**
+    /***
+     *  상속을 통해 공통 코드를 분리하였다.
+     *  그리고 추상메소드와 훅메소드를 통해 확장성을 높였다.
      *
-     *  해당 Dao의 문제점
-     *  1. 중복된 코드가 발생한다. connection을 가져오는 부분이 메소드마다 동일하다. 만약 메소드의 개수가 많아진다면
-     *     connection 정보가 바뀌었을 경우 메소드 모두를 수정해야할 문제가 생기게 된다.
-     *  2. 예외 처리를 하지 않고 있다.
-     *  3. 확장성이 떨어진다.
-     * */
+     *  하지만, 자바언어는 다중상속을 허용하지 않는다. 만약, 커넥션 연결에 대한 상속이외의 용도로 dao가 설계되어있을 경우에 사용할 수가 없게 된다.
+     *   또한, 상속을 통한 상하위 클래스의 관계의 밀접 또한 단점이다. 서브클래스는 슈퍼클래스의 기능을 직접 사용할 수 있기 때문에
+     *        슈퍼클래스 내부의 변경이 있을 시 하위 클래스도 변경이 필요할 수 있다. (결합도를 낮추도록 해야 유지보수가 용이하다)
+     *  DB커넥션을 연결하는 코드를 다른 DAO 클래스에서 사용을 못하는 것도 단점임
+     */
 
 }
