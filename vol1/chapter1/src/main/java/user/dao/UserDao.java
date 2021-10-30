@@ -14,16 +14,22 @@ import java.sql.*;
  */
 public class UserDao {
     private ConnectionMaker connectionMaker; //가능. 읽기전용이기 떄문
-    private Connection c; // 매번 바뀌는 인스턴스 변수
-    private User user;    // 매번 바뀌는 인스턴스 변수
-    //개별적으로 바뀌는 변수는 로컬 변수를 활용해야 멀티스레드 환경에서 문제가 발생하지 않는다.
 
-    public UserDao(ConnectionMaker connectionMaker) {
+//    public UserDao() {
+//        DaoFactory daoFactory = new DaoFactory();
+//        this.connectionMaker = daoFactory.connectionMaker();
+//    }
+//    public UserDao(ConnectionMaker connectionMaker) {
+//        this.connectionMaker = connectionMaker;
+//    }
+
+    //수정자 메소드
+    public void setConnectionMaker(ConnectionMaker connectionMaker) {
         this.connectionMaker = connectionMaker;
     }
 
     public void add(User user) throws ClassNotFoundException, SQLException {
-        this.c = connectionMaker.makeConnection();
+        Connection c = connectionMaker.makeConnection();
 
         String query = new StringBuilder("insert into users(id, name, password)")
                 .append(" values (?,?,?)").toString();
@@ -41,7 +47,7 @@ public class UserDao {
 
 
     public User get(String id) throws ClassNotFoundException, SQLException {
-        this.c = connectionMaker.makeConnection();
+        Connection c = connectionMaker.makeConnection();
 
         String query = new StringBuilder("select * from users where id = ?").toString();
         PreparedStatement ps = c.prepareStatement(query);
@@ -49,7 +55,7 @@ public class UserDao {
 
         ResultSet rs = ps.executeQuery();
         rs.next();
-        this.user = new User();
+        User user = new User();
         user.setId(rs.getString("id"));
         user.setName(rs.getString("name"));
         user.setPassword(rs.getString("password"));
@@ -58,7 +64,7 @@ public class UserDao {
         ps.close();
         c.close();
 
-        return this.user;
+        return user;
 
     }
 
