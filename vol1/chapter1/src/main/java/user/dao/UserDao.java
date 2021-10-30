@@ -1,5 +1,6 @@
 package user.dao;
 
+import common.db.SimpleConnectionMaker;
 import user.domain.User;
 
 import java.sql.*;
@@ -8,17 +9,20 @@ import java.sql.*;
  * packageName : user.dao
  * fileName : UserDao
  * author : haedoang
- * date : 2021/10/29
- * description : 상속을 통해 확장할 Users 도메인에 접근할 User 추상 클래스
+ * date : 2021/10/30
+ * description : 관심사의 분리를 적용한 UserDao
  */
-public abstract class UserDao {
-    public abstract Connection getConnection() throws ClassNotFoundException, SQLException;
+public class UserDao {
+    private SimpleConnectionMaker simpleConnectionMaker;
 
+    public UserDao() {
+        this.simpleConnectionMaker = new SimpleConnectionMaker();
+    }
     public void add(User user) throws ClassNotFoundException, SQLException {
-        Connection c = getConnection();
+        Connection c = simpleConnectionMaker.makeNewConnection();
 
-        String query = new StringBuilder("insert into users(id, name, password) ")
-                                    .append(" values (?,?,?)").toString();
+        String query = new StringBuilder("insert into users(id, name, password)")
+                                        .append(" values (?,?,?)").toString();
 
         PreparedStatement ps = c.prepareStatement(query);
         ps.setString(1, user.getId());
@@ -33,7 +37,7 @@ public abstract class UserDao {
 
 
     public User get(String id) throws ClassNotFoundException, SQLException {
-        Connection c = getConnection();
+        Connection c = simpleConnectionMaker.makeNewConnection();
 
         String query = new StringBuilder("select * from users where id = ?").toString();
         PreparedStatement ps = c.prepareStatement(query);
@@ -54,18 +58,25 @@ public abstract class UserDao {
 
     }
 
-    protected void hookMethod() {
-        System.out.println("훅 메소드는 선택적으로 오버라이드가능하다.");
+    public static void main(String[] args) throws Exception {
+        User user = new User();
+        user.setId("haedoang");
+        user.setName("김해동");
+        user.setPassword("1234");
+
+        UserDao dao = new UserDao();
+        dao.add(user);
+
+        User user1 = dao.get(user.getId());
+        System.out.println(user1.getName());
+        System.out.println(user1.getPassword());
     }
 
     /***
-     *  상속을 통해 공통 코드를 분리하였다.
-     *  그리고 추상메소드와 훅메소드를 통해 확장성을 높였다.
-     *
-     *  하지만, 자바언어는 다중상속을 허용하지 않는다. 만약, 커넥션 연결에 대한 상속이외의 용도로 dao가 설계되어있을 경우에 사용할 수가 없게 된다.
-     *   또한, 상속을 통한 상하위 클래스의 관계의 밀접 또한 단점이다. 서브클래스는 슈퍼클래스의 기능을 직접 사용할 수 있기 때문에
-     *        슈퍼클래스 내부의 변경이 있을 시 하위 클래스도 변경이 필요할 수 있다. (결합도를 낮추도록 해야 유지보수가 용이하다)
-     *  DB커넥션을 연결하는 코드를 다른 DAO 클래스에서 사용을 못하는 것도 단점임
+     *  관심사를 독립적으로 분리하였다.
+     *  발생할 수 있는 문제점은 무엇일까?
+     *  현재 UserDao 에서 N사와 S사에게 상속을 통해 기능을 구현하기가 어려워졌다.
+     *  커넥션 연결을 변경할 경우 UserDao를 직접 수정해야할 문제가 다시 생겼다.
+     *  어떤 클래스가 쓰일지와 어떤 메소드가 쓰여야하는지까지 알아야하는 문제점이 발생한다.
      */
-
 }
