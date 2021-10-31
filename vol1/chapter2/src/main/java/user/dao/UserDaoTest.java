@@ -1,19 +1,48 @@
 package user.dao;
 
+import org.junit.Test;
+import org.junit.runner.JUnitCore;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import user.domain.User;
+
+import java.sql.SQLException;
+
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * packageName : user.dao
  * fileName : UserDaoTest
  * author : haedoang
  * date : 2021/10/31
- * description :
+ * description : userDaoTest Junit
  */
 public class UserDaoTest {
 
-    public static void main(String[] args) throws Exception {
+    /** BEFORE JUNIT */
+//    public static void main(String[] args) throws Exception {
+//        ApplicationContext context = new GenericXmlApplicationContext("applicationContext.xml");
+//        UserDao userDao = context.getBean("userDao", UserDao.class);
+//
+//        User user = new User();
+//        user.setId("haedoang");
+//        user.setName("김해동");
+//        user.setPassword("1234");
+//        userDao.add(user);
+//
+//        User user1 = userDao.get(user.getId());
+//
+//        if(!user.getName().equals(user1.getName())) {
+//            System.out.println("테스트 실패(name)");
+//        } else if(!user.getPassword().equals(user1.getPassword())) {
+//            System.out.println("테스트 실패(password");
+//        } else {
+//            System.out.println("조회 테스트 성공");
+//        }
+//    }
+    @Test
+    public void addAndGet() throws SQLException {
         ApplicationContext context = new GenericXmlApplicationContext("applicationContext.xml");
         UserDao userDao = context.getBean("userDao", UserDao.class);
 
@@ -25,15 +54,20 @@ public class UserDaoTest {
 
         User user1 = userDao.get(user.getId());
 
-        System.out.println("user1.getName() = " + user1.getName());
-        System.out.println("user1.getPassword() = " + user1.getPassword());
+
+        assertThat(user.getName(), is(user1.getName()));
+        assertThat(user.getPassword(), is(user1.getPassword()));
     }
 
-    /***
-     *  테스트의 문제점
-     *  1. 수동 확인 작업의 번거로움
-     *    => 테스트의 결과에 대한 확인은 작성자에게 있다. 테스트를 돌려서 다시 확인하는 작업이 필요하다.
-     *  2. 실행 작업의 번거로움
-     *    => 테스트를 실행하려면 main() 메소드를 실행해야 한다. 이러한 테스트 클래스가 여러 개라면 실행 작업이 번거로울 수 밖에 없다.
-     */
+
+    public static void main(String[] args) {
+        System.out.println("JUNIT TEST 실행.");
+        JUnitCore.main("user.dao.UserDaoTest");
+    }
+
+    /**
+     *  2.1에서는 사용자가 테스트의 결과를 확인했던 반면
+     *  2.2에 적용한 JUNIT 프레임워크를 통해 테스트의 결과를 확인할 수 있게 되었다.
+     *  사용자는 테스트이ㅡ 결과를 성공 실패의 결과로 확인할 수 있고, 실패한 곳을 확인할 수 있게 되었다.
+     * */
 }
