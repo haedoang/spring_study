@@ -68,4 +68,11 @@ public class UserDao {
 
     }
 
+    /***
+     *  XML을 이용한 빈 설정 방식
+     *  <beans> </beans> : @Congfiguration
+     *  <bean> </bean> : @Bean
+     *
+     */
+
 }

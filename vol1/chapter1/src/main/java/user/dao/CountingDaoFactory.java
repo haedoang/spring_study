@@ -14,10 +14,10 @@ import user.domain.User;
  * date : 2021/10/30
  * description :
  */
-@Configuration
+@Configuration // <Beans>
 public class CountingDaoFactory {
 
-    @Bean
+    @Bean  // <Bean>
     public UserDao userDao() {
         UserDao userDao = new UserDao();
         userDao.setConnectionMaker(connectionMaker()); //수정자 메소드로 구현
