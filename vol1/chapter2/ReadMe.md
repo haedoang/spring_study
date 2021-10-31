@@ -4,3 +4,4 @@
 ### 학습 내용 정리하기
 - [x] 2.1 UserDaoTest 다시보기 p.146
 - [x] 2.2 UserDaoTest의 개선 p.154
+- [x] 2.3 개발자를 위한 테스팅 프레임워크 JUnit p.161
