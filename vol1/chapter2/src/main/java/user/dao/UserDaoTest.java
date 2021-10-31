@@ -2,12 +2,19 @@ package user.dao;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.JUnitCore;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.datasource.SimpleDriverDataSource;
+import org.springframework.jdbc.datasource.SingleConnectionDataSource;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import user.domain.User;
 
+import javax.sql.DataSource;
 import java.sql.SQLException;
 
 import static org.hamcrest.core.Is.is;
@@ -20,73 +27,42 @@ import static org.junit.Assert.assertThat;
  * date : 2021/10/31
  * description : userDaoTest Junit
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(locations="/applicationContext.xml") //테스트 클래스의 컨텍스트는 공유된다. 클래스 내 뿐 아니라 각기 다른 클래스에서도
+@ContextConfiguration(locations = "/test-applicationContext.xml")
+//@DirtiesContext  Test 내에서 ApplicationContext 변경이 된다를 선언한다.
 public class UserDaoTest {
     /** fixture */
+    @Autowired
     private UserDao userDao;
+
+    @Autowired
+    SimpleDriverDataSource dataSource;
+
     private User user1;
     private User user2;
     private User user3;
 
+//    @Autowired
+//    private ApplicationContext context;
+
     @Before
-    public void setUp() throws Exception {
-        ApplicationContext context = new GenericXmlApplicationContext("applicationContext.xml");
-        this.userDao = context.getBean("userDao", UserDao.class);
+    public void setUp() {
+        //context와 test 클래스는 각기 다른 오브젝트(독립적)이다.
+        //System.out.println("this.context : " + this.context);
+        //System.out.println("this : " + this);
+
+        //this.userDao = this.context.getBean("userDao", UserDao.class);
+
+        // TEST용 dataSource
+//        DataSource dataSource = new SingleConnectionDataSource(
+//                "jdbc:mysql://localhost:3306/testdb?useSSL=false", "student" ,"student",true
+//        );
+//        userDao.setDataSource(dataSource);
     }
 
-    /** BEFORE JUNIT */
-//    public static void main(String[] args) throws Exception {
-//        ApplicationContext context = new GenericXmlApplicationContext("applicationContext.xml");
-//        UserDao userDao = context.getBean("userDao", UserDao.class);
-//
-//        User user = new User();
-//        user.setId("haedoang");
-//        user.setName("김해동");
-//        user.setPassword("1234");
-//        userDao.add(user);
-//
-//        User user1 = userDao.get(user.getId());
-//
-//        if(!user.getName().equals(user1.getName())) {
-//            System.out.println("테스트 실패(name)");
-//        } else if(!user.getPassword().equals(user1.getPassword())) {
-//            System.out.println("테스트 실패(password");
-//        } else {
-//            System.out.println("조회 테스트 성공");
-//        }
-//    }
     @Test
     public void addAndGet() throws SQLException {
-//        /** GIVEN */
-//        ApplicationContext context = new GenericXmlApplicationContext("applicationContext.xml");
-//        UserDao userDao = context.getBean("userDao", UserDao.class);
-//
-//        /** WHEN */
-//        userDao.deleteAll();
-//
-//        /** THEN */
-//        assertThat(userDao.getCount(), is(0));
-//
-//        /** WHEN */
-//        User user = new User();
-//        user.setId("haedoang");
-//        user.setName("김해동");
-//        user.setPassword("1234");
-//        userDao.add(user);
-//
-//        /** THEN */
-//        assertThat(userDao.getCount(), is(1));
-//
-//        /** WHEN */
-//        User user1 = userDao.get(user.getId());
-//
-//        /**THEN */
-//        assertThat(user.getName(), is(user1.getName()));
-//        assertThat(user.getPassword(), is(user1.getPassword()));
-
-        /** REFACTOR */
-        ApplicationContext context = new GenericXmlApplicationContext("applicationContext.xml");
-
-        UserDao userDao = context.getBean("userDao", UserDao.class);
         this.user1 = new User("gyungri", "경리","8787");
         this.user2 = new User("mina", "미나","9999");
 
@@ -110,9 +86,6 @@ public class UserDaoTest {
 
     @Test
     public void count() throws Exception {
-//        ApplicationContext context = new GenericXmlApplicationContext("applicationContext.xml");
-//        UserDao userDao = context.getBean("userDao", UserDao.class);
-
         this.user1 = new User("haedoang", "김해동", "1234");
         this.user2 = new User("chuu", "이달의소녀 츄", "5678");
         this.user3 = new User("sana", "트와이스 사나", "1357");
@@ -132,23 +105,21 @@ public class UserDaoTest {
 
     @Test(expected = EmptyResultDataAccessException.class)
     public void getUserFailure() throws SQLException {
-//        ApplicationContext context = new GenericXmlApplicationContext("applicationContext.xml");
-//        UserDao userDao = context.getBean("userDao", UserDao.class);
         userDao.deleteAll();
         assertThat(userDao.getCount(), is(0));
         userDao.get("unknown_id");
     }
 
-
-
-    public static void main(String[] args) {
-        System.out.println("JUNIT TEST 실행.");
-        JUnitCore.main("user.dao.UserDaoTest");
-    }
-
-    /**
-     *  테스트 수행에 필요한 오브젝트를 픽스처라고 부르며 픽스처의 초기화를 @Before 에서 수행한다.
-     *  JUNIT은 테스트 케이스 (@Test) 단위마다 테스트 오브젝트를 새로 만들어 독립적인 테스트 환경으로 돌아간다.
-     * */
-
+    /***
+     *  스프링 테스트 적용.
+     *  @RunWith는 JUnit 테스트 실행 방법을 확장하는 어노테이션이다.
+     *  @ConfigurationContext 에 등록한 applicationContext를 ApplicationContext에 등록한다.
+     *  테스트의 Context는 공유된다.
+     *
+     *  @Autowired 컨텍스트 내의 빈을 자동으로 주입해준다.
+     *
+     *  @DirtiesContext 테스트 메소드에서 어플리케이션 컨텍스트의 구성이나 상태의 변경을 테스트 컨텍스트 프레임워크에 알려준다.
+     *                  => 이 어노테이션이 붙은 테스트에는 어플리케이션 컨텍스트 공유를 하지 않는다.
+     *
+     */
 }
