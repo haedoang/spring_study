@@ -1,8 +1,8 @@
 package user.dao;
 
-import common.db.ConnectionMaker;
 import user.domain.User;
 
+import javax.sql.DataSource;
 import java.sql.*;
 
 /**
@@ -10,26 +10,17 @@ import java.sql.*;
  * fileName : UserDao
  * author : haedoang
  * date : 2021/10/30
- * description : 관심사의 분리를 적용한 UserDao, Singleton 적용하기
+ * description : DataSource를 주입받는 UserDao 클래스
  */
 public class UserDao {
-    private ConnectionMaker connectionMaker; //가능. 읽기전용이기 떄문
+    private DataSource dataSource;
 
-//    public UserDao() {
-//        DaoFactory daoFactory = new DaoFactory();
-//        this.connectionMaker = daoFactory.connectionMaker();
-//    }
-//    public UserDao(ConnectionMaker connectionMaker) {
-//        this.connectionMaker = connectionMaker;
-//    }
-
-    //수정자 메소드
-    public void setConnectionMaker(ConnectionMaker connectionMaker) {
-        this.connectionMaker = connectionMaker;
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
-    public void add(User user) throws ClassNotFoundException, SQLException {
-        Connection c = connectionMaker.makeConnection();
+    public void add(User user) throws SQLException {
+        Connection c = dataSource.getConnection();
 
         String query = new StringBuilder("insert into users(id, name, password)")
                 .append(" values (?,?,?)").toString();
@@ -46,8 +37,8 @@ public class UserDao {
     }
 
 
-    public User get(String id) throws ClassNotFoundException, SQLException {
-        Connection c = connectionMaker.makeConnection();
+    public User get(String id) throws SQLException {
+        Connection c = dataSource.getConnection();
 
         String query = new StringBuilder("select * from users where id = ?").toString();
         PreparedStatement ps = c.prepareStatement(query);
@@ -68,11 +59,7 @@ public class UserDao {
 
     }
 
-    /***
-     *  XML을 이용한 빈 설정 방식
-     *  <beans> </beans> : @Congfiguration
-     *  <bean> </bean> : @Bean
-     *
-     */
-
+    public Connection getConnection() throws SQLException {
+        return this.dataSource.getConnection();
+    }
 }

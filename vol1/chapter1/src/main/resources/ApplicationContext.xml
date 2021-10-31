@@ -4,10 +4,14 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="connectionMaker" class="common.db.DConnectionMaker"/>
-
-    <bean id="userDao" class="user.dao.UserDao">
-        <property name="connectionMaker" ref="connectionMaker" />
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/tobi" />
+        <property name="username" value="student" />
+        <property name="password" value="student" />
     </bean>
 
+    <bean id="userDao" class="user.dao.UserDao">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
 </beans>
