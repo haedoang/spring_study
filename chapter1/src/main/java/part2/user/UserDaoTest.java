@@ -12,7 +12,7 @@ import java.sql.SQLException;
  * date : 2022/02/05
  * description :
  */
-public class Main {
+public class UserDaoTest {
     public static void main(String[] args)  throws ClassNotFoundException, SQLException {
         final NUserDao nUserDao = new NUserDao();
         User user = new User();

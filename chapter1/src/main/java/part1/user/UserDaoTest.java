@@ -1,4 +1,4 @@
-package part1;
+package part1.user;
 
 import part1.user.dao.UserDao;
 import part1.user.domain.User;
@@ -12,7 +12,7 @@ import java.sql.SQLException;
  * date : 2022/02/05
  * description :
  */
-public class Main {
+public class UserDaoTest {
     public static void main(String[] args)  throws ClassNotFoundException, SQLException {
         final UserDao userDao = new UserDao();
         User user = new User();
