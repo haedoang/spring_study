@@ -36,7 +36,7 @@ public class UserDao {
                 "jdbc:mysql://localhost:3306/tobi?useSSL=false", "student", "student"
         );
 
-        String query = new StringBuilder("select * from users where id = ?").toString();
+        String query = "select * from users where id = ?";
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1, id);
 

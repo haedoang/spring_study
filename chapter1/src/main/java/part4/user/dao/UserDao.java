@@ -1,21 +1,27 @@
-package part2.user.dao;
+package part4.user.dao;
 
-import part2.user.domain.User;
+
+import part4.db.SimpleConnectionMaker;
+import part4.user.domain.User;
 
 import java.sql.*;
 
 /**
- * packageName : part2.user.dao
+ * packageName : part4.user.dao
  * fileName : UserDao
  * author : haedoang
  * date : 2022/02/05
  * description :
  */
-public abstract class UserDao {
-    public abstract Connection getConnection() throws ClassNotFoundException, SQLException;
+public class UserDao {
+    private final SimpleConnectionMaker simpleConnectionMaker;
+
+    public UserDao(SimpleConnectionMaker simpleConnectionMaker) {
+        this.simpleConnectionMaker = simpleConnectionMaker;
+    }
 
     public void add(User user) throws ClassNotFoundException, SQLException {
-        Connection c = getConnection();
+        Connection c = simpleConnectionMaker.makeConnection();
 
         String query = "insert into users(id, name, password) " +
                 " values (?,?,?)";
@@ -33,7 +39,7 @@ public abstract class UserDao {
 
 
     public User get(String id) throws ClassNotFoundException, SQLException {
-        Connection c = getConnection();
+        Connection c = simpleConnectionMaker.makeConnection();
 
         String query = "select * from users where id = ?";
         PreparedStatement ps = c.prepareStatement(query);
@@ -51,5 +57,15 @@ public abstract class UserDao {
         c.close();
 
         return user;
+    }
+
+    public void truncate() throws ClassNotFoundException, SQLException {
+        Connection c = simpleConnectionMaker.makeConnection();
+        String query = "truncate users";
+        final Statement stmt = c.createStatement();
+
+        stmt.execute(query);
+        stmt.close();
+        c.close();
     }
 }
