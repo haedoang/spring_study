@@ -4,29 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45e02b07-d41f-4530-8cae-af62d2afefda" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/part4/TestRunner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/part4/info.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/part4/user/UserDaoManualTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/part4/user/UserDaoNoSpringContainerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/part4/user/UserDaoTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/part4/user/dao/UserDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/part4/user/domain/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/part5/info.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/part5/learningtest/junit/JUnitTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/part5/learningtest/junit/JunitTest2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/junit.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/test-applicationContext.xml" beforeDir="false" />
-    </list>
+    <list default="true" id="45e02b07-d41f-4530-8cae-af62d2afefda" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -180,7 +158,7 @@
       <updated>1644741273770</updated>
       <workItem from="1644741275317" duration="2932000" />
       <workItem from="1644750077912" duration="3449000" />
-      <workItem from="1644850214773" duration="797000" />
+      <workItem from="1644850214773" duration="765000" />
     </task>
     <servers />
   </component>
