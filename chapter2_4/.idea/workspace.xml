@@ -5,27 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45e02b07-d41f-4530-8cae-af62d2afefda" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part4/TestRunner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part4/info.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part4/user/UserDaoManualTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part4/user/UserDaoNoSpringContainerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part4/user/UserDaoTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part4/user/dao/UserDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part4/user/domain/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/test-applicationContext.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part5/learningtest/junit/JUnitTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part5/learningtest/junit/JunitTest2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/junit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -39,68 +35,95 @@
     </file-type-list>
   </component>
   <component name="ProjectId" id="25326RC3dxlwR2joHCLdmEe4KnI" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_MARK_IGNORED_FILES_AS_EXCLUDED" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/java" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/java/part5/learningtest/junit" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="part4.user" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserDaoNoSpringContainerTest">
-    <configuration name="UserDaoTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="part4.user.UserDaoTest" />
+  <component name="RunManager" selected="JUnit.JunitTest2">
+    <configuration name="JUnitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chapter2_4" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="part4.user.*" />
+          <option name="PATTERN" value="part5.learningtest.junit.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserDaoManualTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="chapter2_4" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="part4.user.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="part4.user" />
-      <option name="MAIN_CLASS_NAME" value="part4.user.UserDaoManualTest" />
+      <option name="PACKAGE_NAME" value="part5.learningtest.junit" />
+      <option name="MAIN_CLASS_NAME" value="part5.learningtest.junit.JUnitTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserDaoNoSpringContainerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JUnitTest.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chapter2_4" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="part4.user.*" />
+          <option name="PATTERN" value="part5.learningtest.junit.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="part4.user" />
-      <option name="MAIN_CLASS_NAME" value="part4.user.UserDaoNoSpringContainerTest" />
+      <option name="PACKAGE_NAME" value="part5.learningtest.junit" />
+      <option name="MAIN_CLASS_NAME" value="part5.learningtest.junit.JUnitTest" />
+      <option name="METHOD_NAME" value="test1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JunitTest2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chapter2_4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="part5.learningtest.junit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="part5.learningtest.junit" />
+      <option name="MAIN_CLASS_NAME" value="part5.learningtest.junit.JunitTest2" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JunitTest2.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chapter2_4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="part5.learningtest.junit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="part5.learningtest.junit" />
+      <option name="MAIN_CLASS_NAME" value="part5.learningtest.junit.JunitTest2" />
+      <option name="METHOD_NAME" value="test1" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -122,10 +145,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UserDaoNoSpringContainerTest" />
+        <item itemvalue="JUnit.JunitTest2" />
+        <item itemvalue="JUnit.JUnitTest" />
         <item itemvalue="JUnit.UserDaoTest" />
-        <item itemvalue="JUnit.UserDaoManualTest" />
-        <item itemvalue="Application.UserDaoTest" />
+        <item itemvalue="JUnit.JunitTest2.test1" />
+        <item itemvalue="JUnit.JUnitTest.test1" />
       </list>
     </recent_temporary>
   </component>
@@ -137,7 +161,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644741273770</updated>
-      <workItem from="1644741275317" duration="2886000" />
+      <workItem from="1644741275317" duration="2932000" />
+      <workItem from="1644750077912" duration="3449000" />
     </task>
     <servers />
   </component>
@@ -154,5 +179,17 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/part4/user/UserDaoTest.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
