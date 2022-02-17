@@ -1,15 +1,15 @@
-package part1.user;
+package part3.user;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import part1.user.dao.UserDao;
-import part1.user.domain.User;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
+import part3.user.dao.UserDao;
+import part3.user.domain.User;
 
 import java.sql.SQLException;
 
@@ -22,25 +22,14 @@ import static org.junit.Assert.assertThat;
  * description :
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/applicationContext-part1.xml")
+@ContextConfiguration(locations = "/applicationContext-part3.xml")
 public class UserDaoTest {
     private User user1;
     private User user2;
     private User user3;
 
     @Autowired
-    private ApplicationContext context;
-
-    @Autowired
     private UserDao userDao;
-
-    @Before
-    public void setUp() {
-        //userDao = context.getBean("userDao", UserDao.class);
-
-        System.out.println(this.context);
-        System.out.println(this);
-    }
 
     @Test(expected = EmptyResultDataAccessException.class)
     public void getHandlingError() throws SQLException {
@@ -119,4 +108,6 @@ public class UserDaoTest {
         // then
         assertThat(userDao.getCount(), is(3));
     }
+
+
 }

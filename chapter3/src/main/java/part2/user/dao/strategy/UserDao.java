@@ -36,25 +36,6 @@ public class UserDao {
         c.close();
     }
 
-    public String getTime() throws SQLException {
-        Connection c = dataSource.getConnection();
-
-        String query = "select now() from dual";
-        Statement stmt = c.createStatement();
-
-        ResultSet rs = stmt.executeQuery(query);
-        rs.next();
-
-        final String datetime = rs.getString(1);
-
-        rs.close();
-        c.close();
-
-
-        return datetime;
-    }
-
-
     public User get(String id) throws SQLException {
         Connection c = dataSource.getConnection();
 
