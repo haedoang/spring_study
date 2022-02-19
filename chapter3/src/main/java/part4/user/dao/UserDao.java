@@ -1,62 +1,41 @@
-package part3.user.dao;
+package part4.user.dao;
 
+import jdk.nashorn.internal.scripts.JD;
 import org.springframework.dao.EmptyResultDataAccessException;
-import part3.user.domain.User;
+import part4.user.domain.User;
 
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
 
 /**
  * author : haedoang
- * date : 2022/02/17
+ * date : 2022/02/19
  * description :
  */
 public class UserDao {
+
+    private JdbcContext jdbcContext;
     private DataSource dataSource;
 
+    //스프링 빈으로 사용하기
+//    public void setJdbcContext(JdbcContext jdbcContext) {
+//        this.jdbcContext = jdbcContext;
+//    }
+
     public void setDataSource(DataSource dataSource) {
+        //jdbcContext의 DI 역할을 UserDao에게 넘긴다
+        this.jdbcContext = new JdbcContext();
+        jdbcContext.setDataSource(dataSource);
+
         this.dataSource = dataSource;
     }
 
-    //컨텍스트
-    public void jdbcContextWithStatementStrategy(StatementStrategy stmt) throws SQLException {
-        Connection c = null;
-        PreparedStatement ps = null;
-
-        try {
-            c = dataSource.getConnection();
-
-            ps = stmt.makePreparedStatement(c);
-
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw e;
-        } finally {
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException e) {
-                    //ps.close() 에서 예외가 발생할 수 있음. 예외처리를 하지 않으면 connection 을 닫지 못한다.
-                }
-            }
-            if (c != null) {
-                try {
-                    c.close();
-                } catch (SQLException e) {
-                }
-            }
-        }
-
-        ps.close();
-        c.close();
-    }
-
     public void add(final User user) throws SQLException {
-        // 익명 내부 클래스
-        jdbcContextWithStatementStrategy(
-                //전략
-                new StatementStrategy() {
+        this.jdbcContext.workWithStatementStrategy(new StatementStrategy() {
             @Override
             public PreparedStatement makePreparedStatement(Connection c) throws SQLException {
                 final PreparedStatement ps = c.prepareStatement("insert into users(id, name, password) values(?,?,?)");
@@ -94,7 +73,7 @@ public class UserDao {
     }
 
     public void deleteAll() throws SQLException {
-        jdbcContextWithStatementStrategy(new StatementStrategy() {
+        this.jdbcContext.workWithStatementStrategy(new StatementStrategy() {
             @Override
             public PreparedStatement makePreparedStatement(Connection c) throws SQLException {
                 final PreparedStatement ps = c.prepareStatement("delete from users");
