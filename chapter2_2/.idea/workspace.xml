@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45e02b07-d41f-4530-8cae-af62d2afefda" name="Changes" comment="" />
+    <list default="true" id="45e02b07-d41f-4530-8cae-af62d2afefda" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../chapter3/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chapter3/src/main/java/part2/info.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chapter3/src/main/java/part2/user/NewUserDaoTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chapter3/src/main/java/part2/user/UserDaoTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chapter3/src/main/java/part2/user/dao/UserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chapter3/src/main/java/part2/user/dao/strategy/DeleteAllStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chapter3/src/main/java/part2/user/dao/strategy/NewUserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chapter3/src/main/java/part2/user/dao/strategy/StatementStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chapter3/src/main/java/part2/user/dao/strategy/UserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chapter3/src/main/java/part2/user/dao/templatemethod/UserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chapter3/src/main/java/part2/user/dao/templatemethod/UserDaoDeleteAll.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chapter3/src/main/java/part2/user/domain/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chapter3/src/main/resources/applicationContext-part2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -159,6 +175,8 @@
       <workItem from="1644741275317" duration="2932000" />
       <workItem from="1644750077912" duration="3449000" />
       <workItem from="1644850214773" duration="765000" />
+      <workItem from="1645099325386" duration="1456000" />
+      <workItem from="1645108694255" duration="47000" />
     </task>
     <servers />
   </component>
