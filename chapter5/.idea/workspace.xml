@@ -5,7 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9acce04e-598d-4cf7-8637-2a1c8ed8fba7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part2/user/UserServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part2/user/dao/UserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part2/user/dao/UserDaoJdbc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part2/user/domain/Level.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part2/user/domain/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part2/user/exception/TestUserServiceException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part2/user/info.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part2/user/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/applicationContext-part2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/part1/user/info.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/part1/user/info.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,10 +53,12 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="part2.user.exception" />
       <recent name="user" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/java/part2" />
       <recent name="$PROJECT_DIR$/src/main/java" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
@@ -58,82 +70,85 @@
     <key name="CreateTestDialog.RecentsKey">
       <recent name="user.service" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="part2.user" />
+    </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserServiceTest.upgradeLevels">
-    <configuration name="UserDaoTest.sqlExceptionTranslate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="chapter5" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="part1.user.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="part1.user" />
-      <option name="MAIN_CLASS_NAME" value="part1.user.UserDaoTest" />
-      <option name="METHOD_NAME" value="sqlExceptionTranslate" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.UserServiceTest.upgradeAllOrNothingOk2_abstractTx">
     <configuration name="UserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chapter5" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value=".*" />
+          <option name="PATTERN" value="part2.user.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="part1.user" />
-      <option name="MAIN_CLASS_NAME" value="part1.user.UserServiceTest" />
+      <option name="PACKAGE_NAME" value="part2.user" />
+      <option name="MAIN_CLASS_NAME" value="part2.user.UserServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceTest.upgradeLevels" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserServiceTest.upgradeAllOrNothiing" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chapter5" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="part1.user.*" />
+          <option name="PATTERN" value="part2.user.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="part1.user" />
-      <option name="MAIN_CLASS_NAME" value="part1.user.UserServiceTest" />
-      <option name="METHOD_NAME" value="upgradeLevels" />
+      <option name="PACKAGE_NAME" value="part2.user" />
+      <option name="MAIN_CLASS_NAME" value="part2.user.UserServiceTest" />
+      <option name="METHOD_NAME" value="upgradeAllOrNothiing" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserTest.cannotUpgradedLevel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserServiceTest.upgradeAllOrNothing" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chapter5" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="part1.user.*" />
+          <option name="PATTERN" value="part2.user.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="part1.user" />
-      <option name="MAIN_CLASS_NAME" value="part1.user.UserTest" />
-      <option name="METHOD_NAME" value="cannotUpgradedLevel" />
+      <option name="PACKAGE_NAME" value="part2.user" />
+      <option name="MAIN_CLASS_NAME" value="part2.user.UserServiceTest" />
+      <option name="METHOD_NAME" value="upgradeAllOrNothing" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserTest.upgradeLevel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserServiceTest.upgradeAllOrNothingOk" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chapter5" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="part1.user.*" />
+          <option name="PATTERN" value="part2.user.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="part1.user" />
-      <option name="MAIN_CLASS_NAME" value="part1.user.UserTest" />
-      <option name="METHOD_NAME" value="upgradeLevel" />
+      <option name="PACKAGE_NAME" value="part2.user" />
+      <option name="MAIN_CLASS_NAME" value="part2.user.UserServiceTest" />
+      <option name="METHOD_NAME" value="upgradeAllOrNothingOk" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest.upgradeAllOrNothingOk2_abstractTx" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chapter5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="part2.user.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="part2.user" />
+      <option name="MAIN_CLASS_NAME" value="part2.user.UserServiceTest" />
+      <option name="METHOD_NAME" value="upgradeAllOrNothingOk2_abstractTx" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -141,11 +156,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UserServiceTest.upgradeLevels" />
-        <item itemvalue="JUnit.UserTest.cannotUpgradedLevel" />
-        <item itemvalue="JUnit.UserTest.upgradeLevel" />
-        <item itemvalue="JUnit.UserServiceTest (3)" />
-        <item itemvalue="JUnit.UserDaoTest.sqlExceptionTranslate" />
+        <item itemvalue="JUnit.UserServiceTest.upgradeAllOrNothingOk2_abstractTx" />
+        <item itemvalue="JUnit.UserServiceTest.upgradeAllOrNothingOk" />
+        <item itemvalue="JUnit.UserServiceTest.upgradeAllOrNothing" />
+        <item itemvalue="JUnit.UserServiceTest" />
+        <item itemvalue="JUnit.UserServiceTest.upgradeAllOrNothiing" />
       </list>
     </recent_temporary>
   </component>
@@ -157,7 +172,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1645619048879</updated>
-      <workItem from="1645619050762" duration="8858000" />
+      <workItem from="1645619050762" duration="8895000" />
+      <workItem from="1645703822855" duration="22000" />
+      <workItem from="1645853807708" duration="7781000" />
     </task>
     <servers />
   </component>
@@ -174,6 +191,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -183,7 +201,23 @@
           <line>27</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/part2/user/UserServiceTest.java</url>
+          <line>117</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/part2/user/service/UserService.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="users.get(1)" language="JAVA" />
+        <watch expression="users.get(1)" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
