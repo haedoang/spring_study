@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/tobi?useSSL=false"/>
+        <property name="username" value="student"/>
+        <property name="password" value="student"/>
+    </bean>
+
+    <bean id="platformTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="userDao" class="part3.user.dao.UserDaoJdbc">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- dev -->
+    <bean id="mailSender" class="part3.user.service.DummyMailSender"/>
+
+    <!-- 데코레이터 -->
+    <bean id="userService" class="part3.user.service.TxProxyFactoryBean">
+        <property name="transactionManager" ref="platformTransactionManager"/>
+        <property name="target" ref="userServiceImpl"/>
+        <property name="pattern" value="upgradeLevels"/>
+        <property name="serviceInterface" value="part3.user.service.UserService" />
+    </bean>
+
+    <!-- 타깃 -->
+    <bean id="userServiceImpl" class="part3.user.service.UserServiceImpl">
+        <property name="mailSender" ref="mailSender"/>
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+
+
+    <bean id="message" class="part3.study.factorybean.MessageFactoryBean">
+        <property name="text" value="Factory Bean" />
+    </bean>
+</beans>

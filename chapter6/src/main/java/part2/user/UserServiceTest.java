@@ -2,9 +2,12 @@ package part2.user;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import part2.user.dao.UserDao;
 import part2.user.domain.Level;
 import part2.user.domain.User;
@@ -26,6 +29,8 @@ import static part1.user.service.UserServiceImpl.MIN_RECOMMEND_FOR_GOLD;
  * date : 2022/02/27
  * description :
  */
+@ContextConfiguration(locations = "/applicationContext-part3.xml")
+@RunWith(SpringJUnit4ClassRunner.class)
 public class UserServiceTest {
     List<User> users;
 
