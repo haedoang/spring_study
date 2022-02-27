@@ -23,8 +23,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
-import static part2.user.service.UserService.MIN_LOGCOUNT_FOR_SILVER;
-import static part2.user.service.UserService.MIN_RECOMMEND_FOR_GOLD;
+import static part4.user.service.UserService.MIN_LOGCOUNT_FOR_SILVER;
+import static part4.user.service.UserService.MIN_RECOMMEND_FOR_GOLD;
 
 /**
  * author : haedoang
@@ -125,7 +125,7 @@ public class UserServiceTest {
     @Test
     public void upgradeLevelsMock() {
         userDao.deleteAll();
-        for(User user : users) {
+        for (User user : users) {
             userDao.add(user);
         }
 
