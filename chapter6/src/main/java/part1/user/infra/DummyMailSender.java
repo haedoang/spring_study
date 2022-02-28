@@ -1,8 +1,11 @@
-package part1.user.service;
+package part1.user.infra;
 
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * author : haedoang
@@ -10,10 +13,11 @@ import org.springframework.mail.SimpleMailMessage;
  * description :
  */
 public class DummyMailSender implements MailSender {
+    private final List<String> requests = new ArrayList<>();
 
     @Override
     public void send(SimpleMailMessage simpleMailMessage) throws MailException {
-
+        requests.add(simpleMailMessage.getTo()[0]);
     }
 
     @Override

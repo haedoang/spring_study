@@ -13,7 +13,7 @@ import part1.user.dao.UserDao;
 import part1.user.domain.Level;
 import part1.user.domain.User;
 import part1.user.exception.TestUserServiceException;
-import part1.user.service.MockMailSender;
+import part1.user.infra.MockMailSender;
 import part1.user.service.UserService;
 import part1.user.service.UserServiceImpl;
 import part1.user.service.UserServiceTx;
@@ -39,7 +39,7 @@ public class UserServiceTest {
     List<User> users;
 
     @Autowired
-    UserService userService; //userServiceTx
+    UserService userService; //userServiceTx 데코레이터패턴 사용  client -> userServiceTx -> userServiceImpl
 
     @Autowired
     UserServiceImpl userServiceImpl;

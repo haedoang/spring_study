@@ -1,4 +1,4 @@
-package part1.user.service;
+package part1.user.infra;
 
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
@@ -13,7 +13,7 @@ import java.util.List;
  * description :
  */
 public class MockMailSender implements MailSender {
-    private List<String> requests = new ArrayList<>();
+    private final List<String> requests = new ArrayList<>();
 
     public List<String> getRequests() {
         return requests;

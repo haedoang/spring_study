@@ -39,7 +39,6 @@ public class TransactionHandler implements InvocationHandler {
         }
     }
 
-
     public Object invokeInTransaction(Method method, Object[] args) throws Throwable {
         TransactionStatus status = this.transactionManager.getTransaction(new DefaultTransactionDefinition());
         try {
