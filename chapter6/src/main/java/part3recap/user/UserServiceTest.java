@@ -187,7 +187,7 @@ public class UserServiceTest {
         userServiceImpl.setMailSender(mailSender);
 
 
-        userService.upgradeLevels();
+        userServiceImpl.upgradeLevels();
 
         checkLevelUpgraded(users.get(0), false);
         checkLevelUpgraded(users.get(1), true);
