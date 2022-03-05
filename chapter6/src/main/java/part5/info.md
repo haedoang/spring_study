@@ -2,8 +2,8 @@
 
 #### 자동 프록시 생성
 - 부가기능의 적용이 필요한 타깃 오브젝트마다 비슷한 내용의 `proxyFactoryBean` 빈 설정정보를 추가해주어야 한다
-  ```text
-     //서비스가 늘어난다면 아래와 같은 설정 정보를 추가로 작성해주어야 한다
+  ```xml
+     <!--서비스가 늘어난다면 아래와 같은 설정 정보를 추가로 작성해주어야 한다-->
      <bean id="userService" class="org.springframework.aop.framework.ProxyFactoryBean">
         <property name="target" ref="userServiceImpl"/>
         <!-- advisors -->
