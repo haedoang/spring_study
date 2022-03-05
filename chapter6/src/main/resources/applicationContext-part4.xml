@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/tobi?useSSL=false"/>
+        <property name="username" value="student"/>
+        <property name="password" value="student"/>
+    </bean>
+
+    <bean id="platformTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="userDao" class="part4.user.dao.UserDaoJdbc">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- prod
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="mail.server.com"/>
+    </bean>
+    -->
+
+    <!-- dev -->
+    <bean id="mailSender" class="part4.user.infra.DummyMailSender"/>
+
+    <!--<bean id="userService" class="part4.user.service.TxProxyFactoryBean">
+        <property name="transactionManager" ref="platformTransactionManager"/>
+        <property name="target" ref="userServiceImpl"/>
+        <property name="pattern" value="upgradeLevels"/>
+        <property name="serviceInterface" value="part4.user.service.UserService"/>
+    </bean>-->
+
+    <bean id="userService" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="userServiceImpl"/>
+        <!-- advisors -->
+        <property name="interceptorNames">
+            <list>
+                <value>transactionAdvisor</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="userServiceImpl" class="part4.user.service.UserServiceImpl">
+        <property name="mailSender" ref="mailSender"/>
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+
+    <!-- advice -->
+    <bean id="transactionAdvice" class="part4.user.service.TransactionAdvice">
+        <property name="transactionManager" ref="platformTransactionManager"/>
+    </bean>
+
+    <!-- pointcut -->
+    <bean id="transactionPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+        <property name="mappedName" value="upgrade*"/>
+    </bean>
+
+    <!-- advisor -->
+    <bean id="transactionAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut" ref="transactionPointcut"/>
+        <property name="advice" ref="transactionAdvice"/>
+    </bean>
+
+
+</beans>
