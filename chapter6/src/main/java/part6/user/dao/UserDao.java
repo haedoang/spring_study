@@ -1,14 +1,13 @@
-package part5.user.dao;
+package part6.user.dao;
 
-import part5.user.domain.User;
+import part6.user.domain.User;
 
 import java.util.List;
 
 /**
- * packageName : part5.user.dao
  * fileName : UserDao
  * author : haedoang
- * date : 2022-03-05
+ * date : 2022-03-06
  * description :
  */
 public interface UserDao {
@@ -22,5 +21,5 @@ public interface UserDao {
 
     int getCount();
 
-    void update(User user1);
+    void update(User user);
 }

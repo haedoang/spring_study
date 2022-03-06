@@ -1,9 +1,9 @@
-package part5.user.dao;
+package part6.user.dao;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import part5.user.domain.Level;
-import part5.user.domain.User;
+import part6.user.domain.Level;
+import part6.user.domain.User;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -11,10 +11,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * packageName : part5.user.dao
  * fileName : UserDaoJdbc
  * author : haedoang
- * date : 2022-03-05
+ * date : 2022-03-06
  * description :
  */
 public class UserDaoJdbc implements UserDao {

@@ -1,18 +1,20 @@
-package part5.user;
+package part6.user;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.TransientDataAccessResourceException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import part5.user.dao.UserDao;
-import part5.user.domain.Level;
-import part5.user.domain.User;
-import part5.user.exception.TestUserServiceException;
-import part5.user.service.UserService;
-import part5.user.service.UserServiceImpl;
+import part6.user.dao.UserDao;
+import part6.user.domain.Level;
+import part6.user.domain.User;
+import part6.user.exception.TestUserServiceException;
+import part6.user.service.UserService;
+import part6.user.service.UserServiceImpl;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,13 +26,13 @@ import static part3recap.user.service.UserServiceImpl.MIN_LOGCOUNT_FOR_SILVER;
 import static part3recap.user.service.UserServiceImpl.MIN_RECOMMEND_FOR_GOLD;
 
 /**
- * packageName : part5.user
+ * packageName : part6.user
  * fileName : UserDaoTest
  * author : haedoang
- * date : 2022-03-05
+ * date : 2022-03-06
  * description :
  */
-@ContextConfiguration(locations = "/applicationContext-part5.xml")
+@ContextConfiguration(locations = "/applicationContext-part6.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 public class UserServiceTest {
     List<User> users;
@@ -119,10 +121,23 @@ public class UserServiceTest {
         assertThat(userService, is(java.lang.reflect.Proxy.class));
     }
 
+    @Test(expected = TransientDataAccessResourceException.class)
+    public void readOnlyTransactionAttributes() {
+        testUserService.getAll();
+    }
+
 
     static class TestUserServiceImpl extends UserServiceImpl {
         private String id = "4"; //users.get(3).getId();
 
+
+        @Override
+        public List<User> getAll() {
+            for (User user : super.getAll()) {
+                super.update(user);
+            }
+            return null;
+        }
 
         @Override
         protected void upgradeLevel(User user) {

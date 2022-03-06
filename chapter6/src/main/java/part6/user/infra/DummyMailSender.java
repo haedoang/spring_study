@@ -1,14 +1,13 @@
-package part5.user.infra;
+package part6.user.infra;
 
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 
 /**
- * packageName : part5.user.infra
  * fileName : DummyMailSender
  * author : haedoang
- * date : 2022-03-05
+ * date : 2022-03-06
  * description : Dev용 dummy mailSender
  */
 public class DummyMailSender implements MailSender {

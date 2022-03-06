@@ -1,10 +1,9 @@
-package part5.user.domain;
+package part6.user.domain;
 
 /**
- * packageName : part5.user.domain
  * fileName : User
  * author : haedoang
- * date : 2022-03-05
+ * date : 2022-03-06
  * description :
  */
 public class User {
