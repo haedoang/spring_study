@@ -1,18 +1,23 @@
-package part7.user;
+package part8.user;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.TransientDataAccessResourceException;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import part7.user.dao.UserDao;
-import part7.user.domain.Level;
-import part7.user.domain.User;
-import part7.user.exception.TestUserServiceException;
-import part7.user.service.UserService;
-import part7.user.service.UserServiceImpl;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
+import part8.user.dao.UserDao;
+import part8.user.domain.Level;
+import part8.user.domain.User;
+import part8.user.exception.TestUserServiceException;
+import part8.user.service.UserService;
+import part8.user.service.UserServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +34,7 @@ import static part3recap.user.service.UserServiceImpl.MIN_RECOMMEND_FOR_GOLD;
  * date : 2022-03-06
  * description :
  */
-@ContextConfiguration(locations = "/applicationContext-part7.xml")
+@ContextConfiguration(locations = "/applicationContext-part8.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 public class UserServiceTest {
     List<User> users;
@@ -42,6 +47,9 @@ public class UserServiceTest {
 
     @Autowired
     UserDao userDao;
+
+    @Autowired
+    PlatformTransactionManager transactionManager;
 
     @Before
     public void setUp() {
@@ -120,9 +128,87 @@ public class UserServiceTest {
 
     @Test(expected = TransientDataAccessResourceException.class)
     public void readOnlyTransactionAttributes() {
-        this.testUserService.getAll();
+        testUserService.getAll();
     }
 
+    @Test(expected = TransientDataAccessResourceException.class)
+    public void transactionSync() {
+        //트랜잭션 참여하는 방법 테스트
+        //트랜잭션 생성
+        final DefaultTransactionDefinition txDefinition = new DefaultTransactionDefinition();
+        txDefinition.setReadOnly(true);
+        final TransactionStatus status = transactionManager.getTransaction(txDefinition);
+
+
+        userService.deleteAll(); // 트랜잭션 참여
+        userService.add(users.get(0)); // 트랜잭션 참여
+        userService.add(users.get(1)); // 트랜잭션 참여
+
+        transactionManager.commit(status);
+    }
+
+    @Test
+    @Transactional
+    public void transactionSyncDaoWithTransactional() {
+        userDao.deleteAll();
+        userService.add(users.get(0));
+        userService.add(users.get(1));
+    }
+
+    @Test(expected = TransientDataAccessResourceException.class)
+    public void transactionSyncDao() {
+        final DefaultTransactionDefinition txDefinition = new DefaultTransactionDefinition();
+        txDefinition.setReadOnly(true);
+        final TransactionStatus status = transactionManager.getTransaction(txDefinition);
+
+        userDao.deleteAll();
+        userService.add(users.get(0)); // 트랜잭션 참여
+        userService.add(users.get(1)); // 트랜잭션 참여
+
+        transactionManager.commit(status);
+    }
+
+    @Test(expected = TransientDataAccessResourceException.class)
+    @Transactional(readOnly = true)
+    public void transactionSyncDaoWithTransactionalReadOnly() {
+        userDao.deleteAll();
+        userService.add(users.get(0));
+        userService.add(users.get(1));
+    }
+
+    @Test
+    public void transactionRollback() {
+        userDao.deleteAll();
+        assertThat(userDao.getCount(), is(0));
+
+        final DefaultTransactionDefinition txDefinition = new DefaultTransactionDefinition();
+        final TransactionStatus status = transactionManager.getTransaction(txDefinition);
+
+        userService.add(users.get(0));
+        userService.add(users.get(1));
+        assertThat(userDao.getCount(), is(2));
+
+        transactionManager.rollback(status);
+        assertThat(userDao.getCount(), is(0));
+
+//        transactionManager.commit(status);
+//        assertThat(userDao.getCount(), is(2));
+
+    }
+
+    @Test
+    @Transactional
+    @Rollback(false)
+    public void transactionNoRollback() {
+        userService.deleteAll();
+        userService.add(users.get(0));
+    }
+
+    @Test
+    @Transactional
+    public void getUserTest() {
+        assertThat(userDao.getCount(), is(1));
+    }
 
     static class TestUserServiceImpl extends UserServiceImpl {
         private String id = "4"; //users.get(3).getId();
