@@ -1,4 +1,4 @@
-package part1.user;
+package part2.user;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,12 +12,12 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
-import part1.user.dao.UserDao;
-import part1.user.domain.Level;
-import part1.user.domain.User;
-import part1.user.exception.TestUserServiceException;
-import part1.user.service.UserService;
-import part1.user.service.UserServiceImpl;
+import part2.user.dao.UserDao;
+import part2.user.domain.Level;
+import part2.user.domain.User;
+import part2.user.exception.TestUserServiceException;
+import part2.user.service.UserService;
+import part2.user.service.UserServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ import static part1.user.service.UserServiceImpl.MIN_RECOMMEND_FOR_GOLD;
  * date : 2022-03-11
  * description :
  */
-@ContextConfiguration(locations = "/applicationContext-part1.xml")
+@ContextConfiguration(locations = "/applicationContext-part2.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 public class UserServiceTest {
     List<User> users;

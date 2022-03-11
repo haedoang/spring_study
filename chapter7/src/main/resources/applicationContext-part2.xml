@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation=
+               "http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+>
+
+    <tx:annotation-driven/>
+
+    <!-- 어노태이션을 이용한 빈 설정 -->
+    <context:annotation-config/>
+
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/tobi?useSSL=false"/>
+        <property name="username" value="student"/>
+        <property name="password" value="student"/>
+    </bean>
+
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="userDao" class="part2.user.dao.UserDaoJdbc">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="sqlService" ref="sqlService"/>
+    </bean>
+
+    <!--    <bean id="sqlService" class="part2.user.sqlservice.XmlSqlService">-->
+    <!--        <property name="sqlmapFile" value="/sqlmap.xml"/>-->
+    <!--    </bean>-->
+
+    <!-- 자기 자신을 참조하는 빈 -->
+    <!--    <bean id="sqlService" class="part2.user.sqlservice.XmlSqlService">-->
+    <!--        <property name="sqlmapFile" value="/sqlmap.xml"/>-->
+    <!--        <property name="sqlReader" ref="sqlService"/>-->
+    <!--        <property name="sqlRegistry" ref="sqlService"/>-->
+    <!--    </bean>-->
+
+    <!-- 빈 확장하기 -->
+    <bean id="sqlReader" class="part2.user.sqlservice.JaxbXmlSqlReader">
+        <property name="sqlmapFile" value="/sqlmap.xml"/>
+    </bean>
+
+    <bean id="sqlRegistry" class="part2.user.sqlservice.HashMapSqlRegistry"/>
+
+    <!--    <bean id="sqlService" class="part2.user.sqlservice.BasicSqlService">-->
+    <!--        <property name="sqlRegistry" ref="sqlRegistry"/>-->
+    <!--        <property name="sqlReader" ref="sqlReader"/>-->
+    <!--    </bean>-->
+
+    <!-- 디폴트 의존관계 -->
+    <bean id="sqlService" class="part2.user.sqlservice.DefaultSqlService"/>
+
+
+    <!-- prod
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="mail.server.com"/>
+    </bean>
+    -->
+
+    <!-- dev -->
+    <bean id="mailSender" class="part2.user.infra.DummyMailSender"/>
+
+    <bean id="userService" class="part2.user.service.UserServiceImpl">
+        <property name="mailSender" ref="mailSender"/>
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+    <!-- 테스트용 UserService -->
+    <bean id="testUserService" class="part2.user.UserServiceTest$TestUserServiceImpl" parent="userService"/>
+</beans>
