@@ -1,4 +1,4 @@
-package part2.user;
+package part3.user;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,12 +12,12 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
-import part2.user.dao.UserDao;
-import part2.user.domain.Level;
-import part2.user.domain.User;
-import part2.user.exception.TestUserServiceException;
-import part2.user.service.UserService;
-import part2.user.service.UserServiceImpl;
+import part3.user.dao.UserDao;
+import part3.user.domain.Level;
+import part3.user.domain.User;
+import part3.user.exception.TestUserServiceException;
+import part3.user.service.UserService;
+import part3.user.service.UserServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ import static part1.user.service.UserServiceImpl.MIN_RECOMMEND_FOR_GOLD;
  * date : 2022-03-11
  * description :
  */
-@ContextConfiguration(locations = "/applicationContext-part2.xml")
+@ContextConfiguration(locations = "/applicationContext-part3.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 public class UserServiceTest {
     List<User> users;
@@ -87,7 +87,7 @@ public class UserServiceTest {
 
     @Test
     public void add() {
-        userService.deleteAll();
+        userDao.deleteAll();
 
         User userWithLevel = users.get(4);
         User userWithoutLevel = users.get(0);
@@ -96,8 +96,8 @@ public class UserServiceTest {
         userService.add(userWithLevel);
         userService.add(userWithoutLevel);
 
-        User userWithLevelRead = userService.get(userWithLevel.getId());
-        User userWithoutLevelRead = userService.get(userWithoutLevel.getId());
+        User userWithLevelRead = userDao.get(userWithLevel.getId());
+        User userWithoutLevelRead = userDao.get(userWithoutLevel.getId());
 
         assertThat(userWithLevelRead.getLevel(), is(userWithLevel.getLevel()));
         assertThat(userWithoutLevelRead.getLevel(), is(Level.BASIC));
