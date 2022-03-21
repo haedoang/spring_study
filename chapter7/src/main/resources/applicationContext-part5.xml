@@ -3,13 +3,14 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xsi:schemaLocation=
                "http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
             http://www.springframework.org/schema/tx
             http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
             http://www.springframework.org/schema/context
-            http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd"
 >
 
     <tx:annotation-driven/>
@@ -30,32 +31,47 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="userDao" class="part4.user.dao.UserDaoJdbc">
+    <bean id="userDao" class="part5.user.dao.UserDaoJdbc">
         <property name="dataSource" ref="dataSource"/>
         <property name="sqlService" ref="sqlService"/>
     </bean>
 
     <!-- 빈 확장하기 -->
-    <bean id="sqlReader" class="part4.user.sqlservice.JaxbXmlSqlReader">
+    <bean id="sqlReader" class="part5.user.sqlservice.JaxbXmlSqlReader">
         <property name="sqlmapFile" value="/sqlmap.xml"/>
     </bean>
 
-    <bean id="sqlRegistry" class="part4.user.sqlservice.HashMapSqlRegistry"/>
+    <!--    <bean id="sqlRegistry" class="part5.user.sqlservice.HashMapSqlRegistry"/>-->
 
-    <!-- 디폴트 의존관계 -->
-    <bean id="sqlService" class="part4.user.sqlservice.OxmSqlService">
-        <property name="unmarshaller" ref="unmarshaller"/>
-        <property name="sqlmap" value="classpath:/sqlmap.xml"/>
+    <!-- 동기화 처리 concurrentHashmap -->
+    <!--    <bean id="sqlRegistry" class="part5.user.sqlservice.ConcurrentHashMapSqlRegistry"/>-->
+
+    <!-- 내장 DB registry -->
+    <bean id="sqlRegistry" class="part5.user.sqlservice.EmbeddedDbSqlRegistry">
+        <property name="dataSource" ref="embeddedDatabase"/>
     </bean>
 
+    <!-- 디폴트 의존관계 -->
+    <bean id="sqlService" class="part5.user.sqlservice.OxmSqlService">
+        <property name="unmarshaller" ref="unmarshaller"/>
+        <!--        <property name="sqlmap" value="classpath:/sqlmap.xml"/>-->
+
+        <property name="sqlRegistry" ref="sqlRegistry"/>
+    </bean>
+
+    <!--    <bean id ="sqlService" class="part5.user.sqlservice.BasicSqlService">-->
+    <!--        <property name="sqlReader" ref="sqlReader"/>-->
+    <!--        <property name="sqlRegistry" ref="sqlRegistry"/>-->
+    <!--    </bean>-->
+
     <!-- sql 변경 용 admin client -->
-<!--    <bean id="sqlAdminService" class="part4.user.sqlservice.SqlAdminService">-->
-<!--        <property name="updatableSqlRegistry" ref="sqlRegistry"/>-->
-<!--    </bean>-->
+    <!--    <bean id="sqlAdminService" class="part5.user.sqlservice.SqlAdminService">-->
+    <!--        <property name="updatableSqlRegistry" ref="sqlRegistry"/>-->
+    <!--    </bean>-->
 
     <!-- castor -->
     <bean id="unmarshaller" class="org.springframework.oxm.castor.CastorMarshaller">
-        <property name="mappingLocation" value="mapping-part4.xml"/>
+        <property name="mappingLocation" value="mapping-part5.xml"/>
     </bean>
 
     <!-- prod
@@ -65,13 +81,19 @@
     -->
 
     <!-- dev -->
-    <bean id="mailSender" class="part4.user.infra.DummyMailSender"/>
+    <bean id="mailSender" class="part5.user.infra.DummyMailSender"/>
 
-    <bean id="userService" class="part4.user.service.UserServiceImpl">
+    <bean id="userService" class="part5.user.service.UserServiceImpl">
         <property name="mailSender" ref="mailSender"/>
         <property name="userDao" ref="userDao"/>
     </bean>
 
     <!-- 테스트용 UserService -->
-    <bean id="testUserService" class="part4.user.UserServiceTest$TestUserServiceImpl" parent="userService"/>
+    <bean id="testUserService" class="part5.user.UserServiceTest$TestUserServiceImpl" parent="userService"/>
+
+
+    <!-- HSQL 내장형 DB 설정 -->
+    <jdbc:embedded-database id="embeddedDatabase" type="HSQL">
+        <jdbc:script location="classpath:sqlRegistrySchema.sql"/>
+    </jdbc:embedded-database>
 </beans>
