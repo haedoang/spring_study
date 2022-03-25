@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8551d59b-913d-4c02-b749-05b73401934f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sqlmap.xsd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/config/AppContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/config/EnableSqlService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/config/SqlMapConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/config/SqlServiceContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/config/UserSqlMapConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/info.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/UserDaoTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/dao/UserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/dao/UserDaoJdbc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/dao/sqlmap.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/domain/Level.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/domain/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/exception/SqlNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/exception/SqlRetrievalFailureException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/exception/SqlUpdateFailureException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/exception/TestUserServiceException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/infra/DummyMailSender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/service/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/AdminEventListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/BasicSqlService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/ConcurrentHashMapSqlRegistry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/DefaultSqlService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/EmbeddedDbSqlRegistry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/HashMapSqlRegistry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/JaxbXmlSqlReader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/MyUpdatableSqlRegistry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/OxmSqlService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/SqlAdminService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/SqlReader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/SqlRegistry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/SqlService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/UpdatableSqlRegistry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/UpdateEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/XmlSqlService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/jaxb/ObjectFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/jaxb/SqlType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/jaxb/Sqlmap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/jaxb/package-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/OxmTest-context.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/database.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/sqlRegistrySchema.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/test-applicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chapter7/src/main/java/part2/user/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../chapter7/src/main/java/part2/user/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chapter7/src/main/java/part3/user/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../chapter7/src/main/java/part3/user/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chapter7/src/main/java/part4/user/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../chapter7/src/main/java/part4/user/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chapter7/src/main/java/part5/user/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../chapter7/src/main/java/part5/user/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chapter7/src/main/resources/sqlmap.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../chapter7/src/main/resources/sqlmap.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="26jy0JqourZijMCXoTJRYngBLqf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/java/part6" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/part6/user/dao" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/java/part6/config" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.UserDaoTest">
+    <configuration name="UserDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chapter7_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="part6.user.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="part6.user" />
+      <option name="MAIN_CLASS_NAME" value="part6.user.UserDaoTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserDaoTest.beans" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chapter7_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="part6.user.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="part6.user" />
+      <option name="MAIN_CLASS_NAME" value="part6.user.UserDaoTest" />
+      <option name="METHOD_NAME" value="beans" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chapter7_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="part6.user.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="part6.user" />
+      <option name="MAIN_CLASS_NAME" value="part6.user.UserServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest.transactionSyncDaoWithTransactional" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chapter7_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="part6.user.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="part6.user" />
+      <option name="MAIN_CLASS_NAME" value="part6.user.UserServiceTest" />
+      <option name="METHOD_NAME" value="transactionSyncDaoWithTransactional" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest.upgradeAllOrNothing" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chapter7_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="part6.user.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="part6.user" />
+      <option name="MAIN_CLASS_NAME" value="part6.user.UserServiceTest" />
+      <option name="METHOD_NAME" value="upgradeAllOrNothing" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.UserDaoTest" />
+        <item itemvalue="JUnit.UserDaoTest.beans" />
+        <item itemvalue="JUnit.UserServiceTest" />
+        <item itemvalue="JUnit.UserServiceTest.transactionSyncDaoWithTransactional" />
+        <item itemvalue="JUnit.UserServiceTest.upgradeAllOrNothing" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8551d59b-913d-4c02-b749-05b73401934f" name="Changes" comment="" />
+      <created>1647951065781</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1647951065781</updated>
+      <workItem from="1647951067921" duration="1024000" />
+      <workItem from="1648039453740" duration="9435000" />
+      <workItem from="1648129431833" duration="1198000" />
+      <workItem from="1648132918255" duration="6188000" />
+      <workItem from="1648139666701" duration="28000" />
+      <workItem from="1648211329379" duration="5608000" />
+      <workItem from="1648216964768" duration="6683000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/part6/user/dao/UserDao.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/part6/config/AppContext.java</url>
+          <line>102</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

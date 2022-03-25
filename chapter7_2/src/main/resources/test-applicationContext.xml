@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation=
+               "http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+>
+    <!-- xml 빈 사용 시 @Autowired 로 주입을 받을 수 있다 -->
+    <!--    <bean id="sqlService" class="part6.user.sqlservice.OxmSqlService">-->
+    <!--        <property name="unmarshaller" ref="unmarshaller"/>-->
+    <!--        <property name="sqlRegistry" ref="sqlRegistry"/>-->
+    <!--    </bean>-->
+
+    <!--    <bean id="sqlRegistry" class="part6.user.sqlservice.EmbeddedDbSqlRegistry">-->
+    <!--        <property name="dataSource" ref="embeddedDatabase"/>-->
+    <!--    </bean>-->
+
+    <!--    <bean id="unmarshaller" class="org.springframework.oxm.castor.CastorMarshaller">-->
+    <!--        <property name="mappingLocation" value="mapping.xml"/>-->
+    <!--    </bean>-->
+</beans>
