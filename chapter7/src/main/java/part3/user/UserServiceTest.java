@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.TransientDataAccessResourceException;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -26,8 +25,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
-import static part1.user.service.UserServiceImpl.MIN_LOGCOUNT_FOR_SILVER;
-import static part1.user.service.UserServiceImpl.MIN_RECOMMEND_FOR_GOLD;
+import static part3.user.service.UserServiceImpl.MIN_LOGCOUNT_FOR_SILVER;
+import static part3.user.service.UserServiceImpl.MIN_RECOMMEND_FOR_GOLD;
 
 /**
  * author : haedoang

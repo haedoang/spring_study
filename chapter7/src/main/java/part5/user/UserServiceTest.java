@@ -25,8 +25,9 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
-import static part1.user.service.UserServiceImpl.MIN_LOGCOUNT_FOR_SILVER;
-import static part1.user.service.UserServiceImpl.MIN_RECOMMEND_FOR_GOLD;
+import static part5.user.service.UserServiceImpl.MIN_LOGCOUNT_FOR_SILVER;
+import static part5.user.service.UserServiceImpl.MIN_RECOMMEND_FOR_GOLD;
+
 
 /**
  * author : haedoang
