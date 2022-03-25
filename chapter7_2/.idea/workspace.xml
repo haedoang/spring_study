@@ -5,64 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8551d59b-913d-4c02-b749-05b73401934f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sqlmap.xsd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/config/AppContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/config/EnableSqlService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/config/SqlMapConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/config/SqlServiceContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/config/UserSqlMapConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/info.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/UserDaoTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/dao/UserDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/dao/UserDaoJdbc.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/dao/sqlmap.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/domain/Level.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/domain/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/exception/SqlNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/exception/SqlRetrievalFailureException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/exception/SqlUpdateFailureException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/exception/TestUserServiceException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/infra/DummyMailSender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/service/UserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/AdminEventListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/BasicSqlService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/ConcurrentHashMapSqlRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/DefaultSqlService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/EmbeddedDbSqlRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/HashMapSqlRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/JaxbXmlSqlReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/MyUpdatableSqlRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/OxmSqlService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/SqlAdminService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/SqlReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/SqlRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/SqlService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/UpdatableSqlRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/UpdateEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/XmlSqlService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/jaxb/ObjectFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/jaxb/SqlType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/jaxb/Sqlmap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/part6/user/sqlservice/jaxb/package-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/OxmTest-context.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/database.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapping.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sqlRegistrySchema.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/test-applicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chapter7/src/main/java/part2/user/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../chapter7/src/main/java/part2/user/UserServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chapter7/src/main/java/part3/user/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../chapter7/src/main/java/part3/user/UserServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chapter7/src/main/java/part4/user/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../chapter7/src/main/java/part4/user/UserServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chapter7/src/main/java/part5/user/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../chapter7/src/main/java/part5/user/UserServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chapter7/src/main/resources/sqlmap.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../chapter7/src/main/resources/sqlmap.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/part7/info.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,7 +160,7 @@
       <workItem from="1648132918255" duration="6188000" />
       <workItem from="1648139666701" duration="28000" />
       <workItem from="1648211329379" duration="5608000" />
-      <workItem from="1648216964768" duration="6683000" />
+      <workItem from="1648216964768" duration="7321000" />
     </task>
     <servers />
   </component>
