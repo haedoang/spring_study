@@ -1,5 +1,6 @@
 package part1;
 
+import org.assertj.core.internal.bytebuddy.description.type.TypeList;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.support.PropertiesBeanDefinitionReader;
 import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.context.support.StaticApplicationContext;
@@ -98,7 +100,7 @@ public class Part1Test {
     @DisplayName("GenericApplicaiton xml 빈 설정 테스트")
     public void genericApplicationContextXmlTest() {
         // given
-        GenericXmlApplicationContext ac = new GenericXmlApplicationContext();
+        GenericApplicationContext ac = new GenericApplicationContext();
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(ac);
         reader.loadBeanDefinitions("part1/genericApplicationContext.xml");
         ac.refresh(); // 메타 정보 등록이 완료됐음을 알림. 애플리케이션 컨텍스트 초기화하라는 명령이다
@@ -131,5 +133,43 @@ public class Part1Test {
         hello.print();
         assertThat(ac.getBeanDefinitionCount()).isEqualTo(2);
         assertThat(ac.getBean("printer").toString()).isEqualTo("Hello Spring");
+    }
+
+    @Test
+    @DisplayName("GenericXmlApplicationContext")
+    public void genericXmlApplicationContextText() {
+        // given
+        GenericXmlApplicationContext ac = new GenericXmlApplicationContext("part1/genericApplicationContext.xml");
+
+        // when
+        Hello hello = ac.getBean("hello", Hello.class);
+
+        // then
+        hello.print();
+        assertThat(ac.getBeanDefinitionCount()).isEqualTo(2);
+        assertThat(ac.getBean("printer").toString()).isEqualTo("Hello Spring");
+    }
+
+    @Test
+    @DisplayName("계층 구조의 빈 컨테이너 테스트")
+    public void parentContextTest() {
+        // given
+        ApplicationContext parent = new GenericXmlApplicationContext("parentContext.xml");
+        GenericApplicationContext child = new GenericApplicationContext(parent);
+        XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(child);
+        reader.loadBeanDefinitions("childContext.xml");
+
+        // when
+        final Printer printer = child.getBean("printer", Printer.class);
+
+        // then
+        assertThat(printer).isNotNull();
+
+        // when
+        final Hello hello = child.getBean("hello", Hello.class);
+
+        // then
+        hello.print();
+        assertThat(printer.toString()).isEqualTo("Hello Child");
     }
 }

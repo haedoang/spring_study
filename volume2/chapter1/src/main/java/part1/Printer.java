@@ -6,6 +6,5 @@ package part1;
  * description :
  */
 public interface Printer {
-
     void print(String message);
 }
