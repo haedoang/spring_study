@@ -13,11 +13,17 @@ import part2.bean.StringPrinter;
  */
 public class HelloService {
 
+    private Printer printer;
+
+    public void setPrinter(Printer printer) {
+        this.printer = printer;
+    }
+
     @Bean
     public Hello hello1() {
         final Hello hello = new Hello();
         hello.setName("Spring");
-        hello.setPrinter(printer());
+        hello.setPrinter(this.printer);
         return hello;
     }
 
@@ -25,7 +31,7 @@ public class HelloService {
     public Hello hello2() {
         final Hello hello = new Hello();
         hello.setName("Spring2");
-        hello.setPrinter(printer());
+        hello.setPrinter(this.printer);
         return hello;
     }
 
