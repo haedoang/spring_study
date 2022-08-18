@@ -217,3 +217,109 @@
   - 스프링이 제공하는 스키마에 정의된 전용 태그를 사용할 수 없다
     - aop, tx 등 10 여개의 스키마와 그 안에 정의된 전용 태그를 쓸 수 없는 것이 큰 단점
     - XML 전용태그에 대응하는 `@Configuration` 설정 방식은 스프링3.1부터 제공한다
+
+## 1.2.3 빈 의존관계 설정 방법
+--- 
+- 빈 의존관계 주입 8가지 방법 
+    - DI 할 대상을 선정하는 방법으로 분류
+        1. 명시적으로 구체적인 빈을 지정하는 방법 => DI 할 빈의 아이디를 직접 지정 
+        2. 일정한 규칙에 따라 자동으로 선정하는 방법 => `자동와이어링`
+    - 메타 정보 작성 방법으로 분류 
+        3. XML <bean> 태그
+        4. 스키마를 가진 전용 태그
+        5. 애노테이션
+        6. 자바 코드에 의한 직접적인 DI
+    - 3 ~ 6번 작성 방법을 세분화
+        7. 명시적으로 빈을 지지정하는 방식
+        8. 자동 선정 방식
+ 
+### XML: < property>, <constructor-arg>
+- DI 방식 2가지 => 아래 두 가지 방식 모두 파라미터로 의존 오브젝트 또는 값을 주입받는다 
+    - 수정자 메서드 사용 방식 => <property>
+    - 클래스의 생성자 이용 방식 => <constructor-arg>
+        - 파라미터의 순서에 주의하여야 한다
+
+### XML: 자동와이어링
+- 자동와이어링 방식 2가지
+    - byName: 빈 이름 자동와이어링
+        - 빈의 모든 프로퍼티에 대해 이름이 동일한 빈을 찾아서 자동으로 등록하는 방식
+        - 같은 이름이 없는 경우 무시된다
+        - ex) `<bean id="hello" class="..." autowired="byName"/>`
+    - byType: 타입에 의한 자동와이어링
+        - 빈의 모든 프로퍼티에 대해 타입이 동일한 빈을 찾아서 자동으로 등록하는 방식
+        - 타입이 같은 빈이 두 개 이상 존재하는 경우 적용할 수 없다
+        - ex) `<bean id="hello class-"..." autowired="byType"/>`
+- XML만 봐서는 빈 사이의 의존관계를 알기 어렵다
+- 코드만 보고 어떤 프로퍼티에 DI가 일어날 지 알 수 없다
+
+### XML: 네임스페이스와 전용 태그
+- 스프링 지원 네임스페이스 사용 방식 
+    - ex) `<aop:config> ... </aop-config>`
+- 전용 태그 사용 
+    - ex) `<oxm:jaxb2-marshaller id="unmarshaller" contextPath="..."/>`
+
+### 애너테이션:@Resource
+- 애너테이션 의존 관계 정보를 이용해 DI하는 방법 3가지
+    - XML의 `<context:annotation-config/>`
+    - XML의 `<context:component-scan/>`
+    - `AnnotationConfigApplicationContext` or `AnnotationConfigWebApplicationContext`
+- 주입할 빈을 아이디로 지정하는 방법으로 클래스의 `수정자`, `필드`에도 붙일 수 있다
+-XML 자동와이어링과 달리 @Resource는 참조할 빈이 반드시 존재해야 한다
+
+### 애너테이션:@Autowired/@Inject
+- 기본적으로 `타입`에 의한 자동와이어링 방식이다
+- @Autowired는 XML의 타입에의한 자동와이어링 방식을 아래 네 가지로 확장함
+    - <b>수정자 메서드</b>와 <b>필드</b>
+        - @Resource 사용 방식과 비슷하다
+    - <b>생성자</b>
+        - 생성자의 모든 파라미터에 타입에 의한 자동와이어링이 적용된다
+        ```java
+        public class BasSqlService implements SqlService {
+            protected SqlReader sqlReader;
+            protected SqlRegistry sqlRegistry;
+      
+            @Autowired //단 한 개의 생성자만 사용 가능
+            public BasSqlService(SqlReader sqlReader, SqlRegistry sqlRegistry) {
+                this.sqlReader = sqlReader;
+                this.sqlRegistry = sqlRegistry;
+            }
+        }
+        ```
+    - <b>일반 메서드</b>
+        - 생성자 주입과 수정자 주입의 단점을 보완하기 위해 사용
+        - 오브젝트 생성 후에 호출되기 때문에 여러 개를 만들 수 있다
+        ```java
+        public class BasSqlService implements SqlService {
+            protected SqlReader sqlReader;
+            protected SqlRegistry sqlRegistry;
+            
+            @Autowired
+            public void config(SqlReader sqlReader, SqlRegistry sqlRegistry) {
+                this.sqlReader = sqlReader;
+                this.sqlRegistry = sqlRegistry;
+            }
+        }
+        ```
+- 동일한 타입을 가진 빈이 여러 개인 경우 @Autowired 사용하는 방법
+    - 컬렉션과 배열 타입으로 받는다 
+    - `@Qualifier` 애너테이션을 사용한다 
+        - ex) @Autowired @Qualifier("mainDB") DataSource dataSource;
+
+### 자바 코드에 의한 의존관계 설정
+1. 애노테이션에 의한 설정 @Autowired, @Resource
+    - 빈은 자바 코드에 의해 생성하고, 의존 관계는 빈 클래스의 애노테이션을 이용
+2. @Bean 메서드 호출
+    - 메소드로 정의된 다른 빈의 메소드 호출을 참조하는 방식
+    - 실제 자바 코드와 동작 방식이 다르기 때문에 오해할 소지가 있음 => 비 권장 방식
+    - @Configuration 이 붙지 않은 클래스의 @Bean 메서드에 이 방식을 사용해서는 안 된다
+        => @Configuration이 붙지않은 @Bean은 단일 인스턴스를 보장하지 않음
+3. @Bean 메서드와 자동와이어링 
+    - 다른 빈의 레퍼런스를 파라미터로 받기 때문에 코드가 자연스럽다
+    - 한 개 이상의 파라미터를 받으며, 다른 클래스에 선언된 빈도 참조 가능하다
+
+### 빈 의존관계 설정 전략
+- XML 단독
+- XML과 애노테이션 설정의 혼합
+- 애노테이션 단독
+
+
