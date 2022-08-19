@@ -323,3 +323,165 @@
 - 애노테이션 단독
 
 
+## 1.2.4 프로퍼티 값 설정 방법
+--- 
+- DI를 통해 빈에 주입되는 것 2가지
+  - 다른 빈 오브젝트의 레퍼런스
+  - 단순 값 => 스프링 빈이 아닌 모든 것 
+
+### 메타정보 종류에 따른 값 설정 방법
+- <b>XML: < property>와 전용태그</b>
+  - ex) < property name="name" value="Everyone"/> 
+  - 스프링은 String 이외의 타입을 변환해주는 변환 서비스를 내장하고 있다
+
+- <b>애노테이션:@Value</b>
+  - 값을 외부에서 주입하는 용도 2가지
+    1. 환경에 따라 달라지는 값 => ex) DataSource
+    2. 초기값을 미리 갖고 있어야하는 경우 => ex) 테스트 또는 특정 이벤트 사용 시 
+  - 설정 분리의 가장 큰 장점은 재컴파일을 안 해도 된다는 점이다
+  - `@Value` 애노테이션은 자바 코드 외부의 리소스나 환경정보에 담긴 값을 사용하도록 지정한다
+    - ex) @Value("#{systemProperties['os.name']}) String name;
+
+- <b>자바코드:@Value</b>
+  - `@Configuration`, `@Bean` 내에서도 설정을 외부로 독립시킬 수 있다
+
+### PropertyEditor와 ConversionService
+- 스프링이 제공하는 스트링 이외의 타입을 변환해주는 타입 변환 서비스이다
+  - PropertyEditor
+    - 디폴트 타입 변환기
+    - `java.beans.PropertyEditor` 인터페이스를 구현한 것 
+    - 지원 타입 
+      - 기본 타입 => boolean, byte, short, ..., Boolean, Byte, Short ...  
+        - ex) @Value("1.2") double rate;
+      - 배열 
+        - ex) @Value("1,2,3,4") int intarr[]
+      - 기타 
+        - Charset
+        - Class
+        - Currency
+        - File
+        - InputStream
+        - Locale
+        - Pattern
+        - Resource
+        - Timezone
+        - URI, URL
+  - ConversionService
+    - 스프링 3.0버전부터 지원
+    - 멀티스레드 환경에서 공유해 사용이 가능하다
+    - 컨테이너가 스프링 빈의 값을 주입하는 작업에는 PropertyEditor로도 충분하다
+
+### 컬렉션
+- 지원하는 컬렉션 => 컬렉션도 다른 빈의 레퍼런스를 참조할 수 있음 `ref`
+  - List
+    ```xml
+      <property name="names">
+        <list>
+          <value>Spring</value>
+          <value>IoC</value>
+          <value>DI</value>
+        </list>
+      </property>
+    ```
+  - Set
+    ```xml
+      <property name="names">
+        <set>
+          <value>Spring</value>
+          <value>IoC</value>
+          <value>DI</value>
+        </set>
+      </property>
+    ```
+  - Map
+    ```xml
+      <property name="ages">
+        <map>
+          <entry key="Kim" value="30"/>
+          <entry key="Lee" value="20"/>
+          <entry key="Seo" value="40"/>
+        </map>
+      </property>
+    ```
+  - Properties
+    ```xml
+      <property name="settings">
+        <props>
+          <prop key="username">Spring</prop>
+          <prop key="password">Book</prop>
+        </props>
+      </property>
+    ```
+  - <util:list>, <util:set>, <util:map>, <util:properties> 
+    - 스키마 전용 태그 이용
+    ```xml
+      <util:list id="names" list-class="java.util.LinkedList">
+          <value>Spring</value>
+          <value>IoC</value>
+          <value>DI</value>
+      </util:list>
+    ```
+### Null과 빈 문자열 
+- 명시적으로 Null을 지정하기 위해선 `<Null />` 태그를 사용해서 구분해야 한다
+
+### 프로퍼티 파일을 이용한 값 설정 
+- 소스코드 수정없이 간단히 설정 정보를 조작할 수 있다
+- 프로퍼티 파일로 분리한 정보를 사용하는 방법 2가지
+  - <b>수동 변환: PropertyPlaceHolderConfigurer</b>
+    - 프로퍼티 치환자를 이용하는 방법이다
+    ```xml
+      <bean id="dataSource" class="...SimpleDriverDataSource">
+        <property name="driverClass" value="${db.driverClass}">
+        <property name="url" value="${db.url}">
+        <property name="username" value="${db.username}">
+        <property name="password" value="${db.password}">
+      </bean>
+
+      <context:property-placeholder location="classpath:datasbase.properties"/>
+    ```
+    - 스프링이 ${} 선언 값을 프로퍼티로 변경하는 방법
+      - `<context:property-placeholder>` 태그에 의해 자동등록되는 </br>
+        `PropertyPlaceHolderConfigurer` 빈이 담당
+        - `빈 팩토리 후처리기` 로 빈 설정 메타정보가 모두 준비됐을 때 빈 메타정보 자체를 조작하기 위해 사용된다
+  - <b>능동 변환: SpEL</b>
+    - 3.0 버전부터 지원
+    - 다른 빈 오브젝트에 직접 접근할 수 있는 표현식을 이용해 원하는 프로퍼티 값을 능동적으로 가져오는 방법
+    - #{} 표현식을 사용한다
+    - 다른 빈의 프로퍼티에 접근, 메소드 호출, 생성자를 통해 오브젝트 생성 등의 기능을 지원한다
+    ```xml
+      <util:properties id="dbprops" location="classpath:database.properties"/>
+      
+      <bean id="dataSource" class="...SimpleDriverDataSource">
+        <property name="driverClass" value="#{dbprops['db.driverClass']}">
+        <property name="url" value="#{dbprops['db.url']}">
+        <property name="username" value="#{dbprops['db.username']}">
+        <property name="password" value="#{dbprops['db.password']}">
+      </bean>
+    ``` 
+
+## 1.2.5 컨테이너가 자동등록하는 빈
+--- 
+### ApplicationContext, BeanFactory
+- ApplicationContext 인터페이스 구현체
+- `@Autowired`, `@Resource` 자동와이어링으로 사용할 수 있다
+- `ApplicationContextAware` 인터페이스 를 구현해서 사용할 수도 있다
+
+### ResourceLoader, ApplicationEventPublisher
+- 스프링컨테이너는 `ResourceLoader` 이기도 하다
+- `ApplicationContext`는 `ResourceLoader`, `ApplicationEventPublisher`를 상속하고 있다
+  - 인터페이스 분리 원칙을 사용하여 리소스 요청에 대해서는 `ResourceLoader` 를 사용하도록 하자
+- `ApplicationEventPublisher`는 구현한 빈에 이벤트를 발생할 수 있는 인터페이스이다
+- 빈 사이에 이벤트를 발생시키고 전달하도록 설계되었으나 거의 사용되지 않는다
+
+### systemProperties, systemEnvironment
+- 타입이 아니라 이름을 통해 접근할 수 있는 빈이다
+- systemProperties
+  - `System.getProperties()` 메서드가 돌려주는 값을 프로퍼티 형태로 반환한다
+  ```java
+    @Resource Properties systemProperties;
+
+    @Value("#{systemProperties['os.name']}) String osName;
+  ```
+- systemEnvironment
+  - `System.getenv()` 메서즈다 제공하는 값을 Map 오브젝트로 반환한다
+  - 사용방법은 systemProperties 동일
